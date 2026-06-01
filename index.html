@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aetram Group — Enterprise Interview Survey & Aptitude Assessment Platform">
+  <title>Aetram Group | Interview Survey & Assessment Platform</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+  <div class="mouse-glow" id="mouse-glow" aria-hidden="true"></div>
+
+  <!-- Navigation — logo only -->
+  <nav class="auth-navbar" id="auth-navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo company-logo-wrap">
+      <img src="assets/logo/company-logo.png" alt="Aetram Group" class="company-logo" onerror="this.onerror=null;this.src='assets/logo/company-logo.svg';">
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <main class="auth-hero" id="home">
+    <section class="hero-branding" id="about">
+      <div class="golden-lines" aria-hidden="true">
+        <div class="golden-line"></div>
+        <div class="golden-line"></div>
+        <div class="golden-line"></div>
+      </div>
+      <h1 class="hero-title">
+        Enterprise <span class="gold">Assessment</span><br>& Survey Intelligence
+      </h1>
+      <p class="typing-text" id="typing-text"></p>
+      <ul class="hero-features">
+        <li>AI-Powered Proctored Examinations</li>
+        <li>Real-Time Analytics & Reporting</li>
+        <li>Enterprise-Grade Security & Compliance</li>
+        <li>Multinational HR Recruitment Suite</li>
+      </ul>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <h4 data-counter="500">0</h4>
+          <p>Enterprise Clients</p>
+        </div>
+        <div class="stat-item">
+          <h4 data-counter="25000">0</h4>
+          <p>Assessments Conducted</p>
+        </div>
+        <div class="stat-item">
+          <h4 data-counter="98">0</h4>
+          <p>% Satisfaction Rate</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-auth" id="services">
+      <div class="auth-card glass-card">
+        <!-- Role Toggle -->
+        <div class="role-toggle" id="role-toggle" role="tablist" aria-label="Select role">
+          <div class="role-toggle-slider"></div>
+          <button type="button" class="role-toggle-btn active" data-role="candidate" role="tab" aria-selected="true">Candidate</button>
+          <button type="button" class="role-toggle-btn" data-role="admin" role="tab" aria-selected="false">Admin</button>
+        </div>
+
+        <h2 class="auth-card-title" id="auth-title">Candidate Portal</h2>
+        <p class="auth-card-subtitle" id="auth-subtitle">Create your account to get started</p>
+
+        <div class="auth-forms">
+          <!-- CANDIDATE LOGIN -->
+          <div class="form-panel" id="candidate-login-panel" data-form="login">
+            <form id="candidate-login-form" novalidate>
+              <div class="floating-group form-group">
+                <input type="email" class="form-input" id="c-login-email" placeholder=" " required autocomplete="email">
+                <label class="form-label" for="c-login-email">Email ID</label>
+                <span class="form-error" id="c-login-email-error">Please enter a valid email</span>
+              </div>
+              <div class="form-group password-wrap">
+                <input type="password" class="form-input" id="c-login-password" placeholder=" " required autocomplete="current-password">
+                <label class="form-label" for="c-login-password">Password</label>
+                <button type="button" class="password-toggle" data-target="c-login-password" aria-label="Toggle password visibility">👁</button>
+                <span class="form-error" id="c-login-password-error">Password is required</span>
+              </div>
+              <div class="form-row">
+                <label class="remember-me">
+                  <input type="checkbox" id="c-remember"> Remember me
+                </label>
+                <a href="#" class="forgot-link" data-forgot="candidate">Forgot password?</a>
+              </div>
+              <button type="submit" class="btn btn-gold btn-full btn-ripple" id="candidateLoginBtn">Sign In</button>
+            </form>
+            <p class="auth-switch">Don't have an account? <a id="candidate-to-signup">Sign Up</a></p>
+          </div>
+
+          <!-- CANDIDATE SIGNUP (default) -->
+          <div class="form-panel active" id="candidate-signup-panel" data-form="signup">
+            <form id="candidate-signup-form" novalidate>
+              <div class="floating-group form-group">
+                <input type="text" class="form-input" id="c-signup-name" placeholder=" " required>
+                <label class="form-label" for="c-signup-name">Full Name</label>
+                <span class="form-error">Full name is required</span>
+              </div>
+              <div class="floating-group form-group">
+                <input type="email" class="form-input" id="c-signup-email" placeholder=" " required>
+                <label class="form-label" for="c-signup-email">Email ID</label>
+                <span class="form-error">Valid email required</span>
+              </div>
+              <div class="floating-group form-group">
+                <input type="tel" class="form-input" id="c-signup-phone" placeholder=" " required>
+                <label class="form-label" for="c-signup-phone">Phone Number</label>
+                <span class="form-error">Phone number required</span>
+              </div>
+              <div class="form-group password-wrap">
+                <input type="password" class="form-input" id="c-signup-password" placeholder=" " required>
+                <label class="form-label" for="c-signup-password">Password</label>
+                <button type="button" class="password-toggle" data-target="c-signup-password" aria-label="Toggle password">👁</button>
+                <div class="strength-bar"><div class="strength-fill" id="c-strength-fill"></div></div>
+                <span class="strength-text" id="c-strength-text"></span>
+              </div>
+              <div class="form-group password-wrap">
+                <input type="password" class="form-input" id="c-signup-confirm" placeholder=" " required>
+                <label class="form-label" for="c-signup-confirm">Confirm Password</label>
+                <button type="button" class="password-toggle" data-target="c-signup-confirm" aria-label="Toggle password">👁</button>
+                <span class="form-error" id="c-confirm-error">Passwords do not match</span>
+              </div>
+              <div class="form-actions-row">
+                <button type="submit" class="btn btn-gold btn-ripple">Create Account</button>
+                <button type="reset" class="btn btn-ghost">Reset</button>
+              </div>
+            </form>
+            <p class="auth-switch">Already have an account? <a id="candidate-to-login">Login</a></p>
+          </div>
+
+          <!-- ADMIN LOGIN -->
+          <div class="form-panel hidden" id="admin-login-panel" data-form="login">
+            <form id="admin-login-form" novalidate>
+              <div class="floating-group form-group">
+                <input type="email" class="form-input" id="a-login-email" placeholder=" " required autocomplete="email">
+                <label class="form-label" for="a-login-email">Admin Email ID</label>
+                <span class="form-error">Please enter a valid email</span>
+              </div>
+              <div class="form-group password-wrap">
+                <input type="password" class="form-input" id="a-login-password" placeholder=" " required>
+                <label class="form-label" for="a-login-password">Password</label>
+                <button type="button" class="password-toggle" data-target="a-login-password" aria-label="Toggle password">👁</button>
+                <span class="form-error">Password is required</span>
+              </div>
+              <div class="form-row">
+                <label class="remember-me">
+                  <input type="checkbox"> Remember me
+                </label>
+                <a href="#" class="forgot-link" data-forgot="admin">Forgot password?</a>
+              </div>
+              <button type="submit" class="btn btn-gold btn-full btn-ripple" id="adminLoginBtn">Admin Sign In</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="social-divider">or continue with</div>
+        <div class="social-icons" role="group" aria-label="Social login">
+          <button type="button" class="social-btn social-google" title="Google" aria-label="Google">G</button>
+          <button type="button" class="social-btn social-apple" title="Apple" aria-label="Apple"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="auth-footer" id="contact">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="company-logo-wrap">
+          <img src="assets/logo/company-logo.png" alt="Aetram Group" class="company-logo footer-logo" onerror="this.onerror=null;this.src='assets/logo/company-logo.svg';">
+        </a>
+        <p>Premium enterprise assessment and survey platform for multinational recruitment, aptitude testing, and HR intelligence.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Instagram">◎</a>
+        </div>
+      </div>
+      <div class="footer-col">
+       
+        
+      </div>
+      <div class="footer-col">
+       
+        
+      </div>
+      <div class="footer-col">
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Aetram Group of Companies. All Rights Reserved.</span>
+      <span>Enterprise Assessment Platform v1.0</span>
+    </div>
+  </footer>
+
+  <!-- Forgot Password / OTP Modal -->
+  <div class="modal-overlay" id="forgot-modal">
+    <div class="modal forgot-modal">
+      <div class="modal-header">
+        <h3 id="forgot-modal-title">Reset Password</h3>
+        <button class="modal-close" data-close="forgot-modal" aria-label="Close">&times;</button>
+      </div>
+      <div class="forgot-step active" id="forgot-step-1">
+        <p class="text-muted" style="margin-bottom:16px;font-size:0.9rem">Verify via email or mobile OTP</p>
+        <div class="otp-tabs">
+          <button type="button" class="otp-tab active" data-channel="email">Email OTP</button>
+          <button type="button" class="otp-tab" data-channel="mobile">Mobile OTP</button>
+        </div>
+        <div class="floating-group form-group" id="forgot-email-group">
+          <input type="email" class="form-input" id="forgot-email" placeholder=" ">
+          <label class="form-label">Email ID</label>
+        </div>
+        <div class="form-group hidden" id="forgot-mobile-group">
+          <input type="tel" class="form-input" id="forgot-mobile" placeholder=" ">
+          <label class="form-label">Mobile Number</label>
+        </div>
+        <button type="button" class="btn btn-gold btn-full" id="send-otp-btn">Send OTP</button>
+      </div>
+      <div class="forgot-step" id="forgot-step-2">
+        <p class="text-muted" style="margin-bottom:16px;font-size:0.9rem">Enter the 6-digit code sent to you</p>
+        <div class="otp-inputs" id="otp-inputs">
+          <input type="text" maxlength="1" class="otp-digit" inputmode="numeric" aria-label="Digit 1">
+          <input type="text" maxlength="1" class="otp-digit" inputmode="numeric" aria-label="Digit 2">
+          <input type="text" maxlength="1" class="otp-digit" inputmode="numeric" aria-label="Digit 3">
+          <input type="text" maxlength="1" class="otp-digit" inputmode="numeric" aria-label="Digit 4">
+          <input type="text" maxlength="1" class="otp-digit" inputmode="numeric" aria-label="Digit 5">
+          <input type="text" maxlength="1" class="otp-digit" inputmode="numeric" aria-label="Digit 6">
+        </div>
+        <p class="otp-resend text-muted">Resend OTP in <span id="otp-timer">60</span>s</p>
+        <button type="button" class="btn btn-gold btn-full" id="verify-otp-btn">Verify OTP</button>
+      </div>
+      <div class="forgot-step" id="forgot-step-3">
+        <div class="form-group password-wrap">
+          <input type="password" class="form-input" id="forgot-new-password" placeholder=" ">
+          <label class="form-label">New Password</label>
+          <button type="button" class="password-toggle" data-target="forgot-new-password" aria-label="Toggle password">👁</button>
+        </div>
+        <div class="form-group password-wrap">
+          <input type="password" class="form-input" id="forgot-confirm-password" placeholder=" ">
+          <label class="form-label">Confirm Password</label>
+          <button type="button" class="password-toggle" data-target="forgot-confirm-password" aria-label="Toggle password">👁</button>
+        </div>
+        <button type="button" class="btn btn-gold btn-full" id="reset-password-btn">Reset Password</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

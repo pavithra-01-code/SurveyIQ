@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application | SurveyIQ</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/candidate.css">
+  <link rel="stylesheet" href="css/jobs.css">
+</head>
+<body>
+  <header class="candidate-header jobs-header">
+    <div class="title-block">
+      <h2 id="job-title">Apply for Role</h2>
+      <span id="job-domain">Loading opportunity...</span>
+    </div>
+    <a class="btn btn-outline btn-ripple" href="job-listings.html">Back to jobs</a>
+  </header>
+
+  <main class="jobs-page">
+    <section class="job-detail-panel glass-card">
+      <div class="job-hero">
+        <div class="hero-meta">
+          <span id="job-domain" class="job-badge">Loading opportunity...</span>
+          <h1 id="job-title">Apply for Role</h1>
+          <p id="job-location" class="job-location">Loading location and schedule...</p>
+        </div>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-column">
+          <h3>Job Description</h3>
+          <p id="job-description">Detailed role description and responsibilities will appear here.</p>
+          <div class="detail-list">
+            <div><span>Role Name / Role Title</span><strong id="job-role-title">-</strong></div>
+            <div><span>Experience range</span><strong id="job-experience-range">-</strong></div>
+            <div><span>Expected Skill</span><strong id="job-expected-skills">-</strong></div>
+            <div><span>Criteria or Degree</span><strong id="job-criteria">-</strong></div>
+            <div><span>Test & Interview Process</span><strong id="job-process">-</strong></div>
+            <div><span>Employment</span><strong id="job-employment">-</strong></div>
+          </div>
+        </div>
+        <div class="info-column">
+          <h3>Job Information</h3>
+          <ul class="info-list">
+            <li><span>Date Opened</span><strong id="job-info-date">-</strong></li>
+            <li><span>Job Type</span><strong id="job-info-type">-</strong></li>
+            <li><span>Industry</span><strong id="job-info-industry">-</strong></li>
+            <li><span>Work Experience</span><strong id="job-info-work-exp">-</strong></li>
+            <li><span>City</span><strong id="job-info-city">-</strong></li>
+            <li><span>Country</span><strong id="job-info-country">India</strong></li>
+            <li><span>Zip/Postal Code</span><strong id="job-info-zip">-</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="application-panel glass-card">
+      <div class="application-intro">
+        <h3>Application Form</h3>
+        <p>Complete all required fields and attach your resume to apply for this role.</p>
+      </div>
+      <form id="application-form">
+        <div class="application-grid">
+          <div class="form-group">
+            <input type="text" class="form-input" id="app-first-name" placeholder=" " required>
+            <label class="form-label">First Name</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-input" id="app-last-name" placeholder=" " required>
+            <label class="form-label">Last Name</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-input" id="app-phone" placeholder=" " required>
+            <label class="form-label">Mobile</label>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-input" id="app-email" placeholder=" " required>
+            <label class="form-label">Email</label>
+          </div>
+          <div class="form-group">
+            <select class="form-input" id="app-degree" required>
+              <option value="">Select Highest Degree</option>
+              <option value="B.Tech">B.Tech</option>
+              <option value="M.Tech">M.Tech</option>
+              <option value="B.Sc">B.Sc</option>
+              <option value="M.Sc">M.Sc</option>
+              <option value="BBA">BBA</option>
+              <option value="MBA">MBA</option>
+            </select>
+            <label class="form-label">Highest Degree</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-input" id="app-college" placeholder=" " required>
+            <label class="form-label">College name</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-input" id="app-total-exp" placeholder=" " required>
+            <label class="form-label">Total Experience in Years</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-input" id="app-relevant-exp" placeholder=" " required>
+            <label class="form-label">Relevant Experience in Years</label>
+          </div>
+          <div class="form-group">
+            <select class="form-input" id="app-notice" required>
+              <option value="">Select Notice Period</option>
+              <option value="Immediate">Immediate</option>
+              <option value="7 Days">7 Days</option>
+              <option value="15 Days">15 Days</option>
+              <option value="30 Days">30 Days</option>
+            </select>
+            <label class="form-label">Notice Period</label>
+          </div>
+          <div class="form-group full-width">
+            <div class="skill-picker" id="skill-picker">
+              <div class="skill-picker-label">Technical Skill Set</div>
+              <div class="skill-picker-control">
+                <div class="skill-chip-list" id="skill-chip-list" aria-live="polite"></div>
+                <input type="text" class="form-input skill-search-input" id="app-skill-input" placeholder="Search skills like SQL, ASP.NET, React" autocomplete="off" aria-label="Search skills">
+              </div>
+              <div class="skill-proficiency" role="radiogroup" aria-label="Skill proficiency">
+                <label class="skill-proficiency-label"><input type="radio" name="skill-level" value="Beginner"> Beginner</label>
+                <label class="skill-proficiency-label"><input type="radio" name="skill-level" value="Intermediate" checked> Intermediate</label>
+                <label class="skill-proficiency-label"><input type="radio" name="skill-level" value="Master"> Master</label>
+              </div>
+              <div class="skill-suggestions hidden" id="skill-suggestions" role="listbox" aria-label="Skill suggestions"></div>
+            </div>
+            <input type="hidden" id="app-skill-data" name="skillData">
+          </div>
+          <div class="form-group full-width">
+            <select class="form-input" id="app-referrer" required>
+              <option value="">How did you know about this job?</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Job Portal">Job Portal</option>
+              <option value="Reference">Reference</option>
+              <option value="Other">Other</option>
+            </select>
+            <label class="form-label">Source</label>
+          </div>
+          <div class="form-group full-width">
+            <textarea class="form-input" id="app-referral" rows="3" placeholder=" "></textarea>
+            <label class="form-label">If Other/Any referral, please specify the details</label>
+          </div>
+          <div class="form-group full-width">
+            <div class="file-upload">
+              <span>Resume</span>
+              <input type="text" class="form-input" id="app-source" placeholder="Browse" readonly>
+              <button type="button" class="btn btn-ghost btn-sm btn-ripple" id="browse-resume">Upload</button>
+              <input type="file" id="app-resume-file" accept=".txt,.pdf,.doc,.docx" style="display:none">
+            </div>
+          </div>
+          <div class="form-group full-width">
+            <textarea class="form-input" id="app-resume" rows="4" placeholder="Paste resume text here to extract skills"></textarea>
+            <label class="form-label">Resume Text (optional)</label>
+          </div>
+          <div class="form-group full-width" style="display:flex;justify-content:flex-end;gap:12px;align-items:center;">
+            <button type="button" class="btn btn-outline btn-sm btn-ripple" id="extract-skills">Extract Skills</button>
+            <span class="text-muted" style="font-size:0.88rem">Upload or paste resume to auto-fill skills.</span>
+          </div>
+          <div class="form-group full-width">
+            <span class="captcha-label">CAPTCHA</span>
+            <div class="captcha-row">
+              <input type="text" class="form-input" id="app-captcha" placeholder=" " required>
+              <div class="captcha-image">pmmn66</div>
+            </div>
+          </div>
+        </div>
+        <div class="resume-actions">
+          <button type="button" class="btn btn-outline btn-sm btn-ripple" id="cancel-application">Cancel</button>
+          <button type="submit" class="btn btn-gold btn-sm btn-ripple">Submit Application</button>
+        </div>
+        <div class="resume-summary" id="resume-summary">
+          <h4>Resume Preview</h4>
+          <p id="summary-text">Use the parser to preview a concise candidate summary.</p>
+          <div class="skill-pill-row" id="preview-skills"></div>
+        </div>
+        <input type="hidden" id="job-id" />
+      </form>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/skill-picker.js"></script>
+  <script src="js/jobs.js"></script>
+  <script>
+    JobsApp.initApplication();
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback | Aetram Group</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/candidate.css">
+</head>
+<body>
+  <header class="candidate-header">
+    <div class="title-block">
+      <h2>Post-Assessment Feedback</h2>
+      <span>Aetram Group of Companies</span>
+    </div>
+  </header>
+
+  <main class="feedback-page">
+    <div class="feedback-card glass-card" id="feedback-form-panel">
+      <h1 style="text-align:center;margin-bottom:8px">Rate Your Experience</h1>
+      <p class="subtitle" style="text-align:center;color:var(--text-muted);margin-bottom:8px">Your feedback helps us improve</p>
+      <div class="star-rating" id="star-rating" role="group" aria-label="Star rating">
+        <button type="button" class="star-btn" data-rating="1" aria-label="1 star">★</button>
+        <button type="button" class="star-btn" data-rating="2" aria-label="2 stars">★</button>
+        <button type="button" class="star-btn" data-rating="3" aria-label="3 stars">★</button>
+        <button type="button" class="star-btn" data-rating="4" aria-label="4 stars">★</button>
+        <button type="button" class="star-btn" data-rating="5" aria-label="5 stars">★</button>
+      </div>
+      <div class="form-group">
+        <textarea class="workspace-textarea" id="feedback-text" placeholder=" " maxlength="500" style="min-height:120px"></textarea>
+        <label class="form-label" for="feedback-text" style="position:static;transform:none;margin-bottom:8px;display:block;color:var(--gold-primary)">Share your feedback</label>
+        <div class="char-counter"><span id="fb-count">0</span>/500</div>
+      </div>
+      <div class="form-group" style="margin-top:20px">
+        <textarea class="workspace-textarea" id="suggestions-text" placeholder="Any improvements or suggestions?" style="min-height:100px"></textarea>
+      </div>
+      <button class="btn btn-gold btn-lg btn-full btn-ripple" id="submit-feedback" style="margin-top:28px">Submit Feedback</button>
+    </div>
+    <div class="feedback-card glass-card success-state" id="feedback-success">
+      <div class="success-check">✓</div>
+      <h2>Thank you for submitting your feedback.</h2>
+      <p class="text-muted" style="margin-top:12px">Redirecting to login...</p>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/candidate.js"></script>
+  <script>CandidateApp.initFeedback();</script>
+</body>
+</html>

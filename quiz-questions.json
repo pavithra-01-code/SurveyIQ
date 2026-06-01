@@ -1,0 +1,12 @@
+{
+  "questions": [
+    {"id":1,"code":"Q1","text":"A train travels 60km in 45 minutes. Speed in km/h?","category":"Aptitude","subcategory":"Time & Work","assessment":"Assessment 1","access":"private"},
+    {"id":2,"code":"Q2","text":"Which data structure uses LIFO?","category":"Technical","subcategory":"Data Structures","assessment":"UI Developer Aptitude","access":"public"},
+    {"id":3,"code":"Q3","text":"REST stands for Representational State Transfer — True or False?","category":"Technical","subcategory":"Web APIs","assessment":"Full Stack Assessment","access":"private"},
+    {"id":4,"code":"Q4","text":"If 20% of a number is 40, the number is?","category":"Aptitude","subcategory":"Percentages","assessment":"Assessment 1","access":"public"},
+    {"id":5,"code":"Q5","text":"Explain encapsulation in OOP.","category":"Technical","subcategory":"OOP","assessment":"Assessment 2","access":"private"},
+    {"id":6,"code":"Q6","text":"Rate your problem-solving ability.","category":"HR","subcategory":"Self Assessment","assessment":"HR Survey","access":"public"},
+    {"id":7,"code":"Q7","text":"Binary search time complexity?","category":"Technical","subcategory":"Algorithms","assessment":"Data Science Quiz","access":"private"},
+    {"id":8,"code":"Q8","text":"Which port is default for HTTPS?","category":"Technical","subcategory":"Networking","assessment":"Cyber Security Test","access":"public"}
+  ]
+}

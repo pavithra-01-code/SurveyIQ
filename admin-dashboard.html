@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Aetram Group</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin-dashboard.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="admin-sidebar"></aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+          <div class="search-bar">
+            <span aria-hidden="true">🔍</span>
+            <input type="search" placeholder="Search dashboard..." id="global-search" aria-label="Global search">
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button class="topbar-icon-btn" title="Notifications" aria-label="Notifications"><span>🔔</span><span class="badge"></span></button>
+          <button class="topbar-icon-btn" title="Settings" aria-label="Settings">⚙</button>
+          <div class="admin-avatar" title="Admin Profile">AD</div>
+          <button class="btn btn-outline btn-sm" id="logout-btn">Logout</button>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <!-- CREATOR MANAGEMENT -->
+        <section class="module-panel active" id="module-creators">
+          <div class="module-header">
+            <div>
+              <h1>Creator Management</h1>
+              <p>Manage assessment creators and content specialists</p>
+            </div>
+            <button class="btn btn-gold btn-ripple" id="add-creator-btn">+ Add Creator</button>
+          </div>
+          <div class="filter-bar" id="creator-filters">
+            <input type="text" class="filter-input" placeholder="Search by name..." data-filter="name">
+            <input type="text" class="filter-input" placeholder="Search by company..." data-filter="company">
+            <input type="text" class="filter-input" placeholder="Search by designation..." data-filter="designation">
+            <select class="filter-select" data-filter="status">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            <select class="filter-select" data-filter="specialization">
+              <option value="">All Specializations</option>
+              <option>Frontend Development</option>
+              <option>Backend Development</option>
+              <option>Full Stack Development</option>
+              <option>Data Science</option>
+              <option>AI &amp; ML</option>
+              <option>Cloud Computing</option>
+              <option>Cyber Security</option>
+            </select>
+            <div class="sort-controls">
+              <button class="sort-btn active" data-sort="name" data-dir="asc">A-Z</button>
+              <button class="sort-btn" data-sort="name" data-dir="desc">Z-A</button>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table" id="creators-table">
+              <thead>
+                <tr>
+                  <th data-sort="name">Creator Name <span class="sort-arrow">↕</span></th>
+                  <th data-sort="email">Email ID</th>
+                  <th>Mobile</th>
+                  <th data-sort="company">Company</th>
+                  <th>Specialization</th>
+                  <th data-sort="designation">Designation</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="creators-tbody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar" data-table="creators"></div>
+        </section>
+
+        <!-- CANDIDATE MANAGEMENT -->
+        <section class="module-panel" id="module-candidates">
+          <div class="module-header">
+            <div>
+              <h1>Candidate Management</h1>
+              <p>Track candidates and assessment assignments</p>
+            </div>
+            <button class="btn btn-gold btn-ripple" id="add-candidate-btn">+ Add Candidate</button>
+          </div>
+          <div class="filter-bar" id="candidate-filters">
+            <input type="text" class="filter-input" placeholder="Search candidate..." data-filter="name">
+            <input type="text" class="filter-input" placeholder="Search assessment..." data-filter="assessment">
+            <select class="filter-select" data-filter="domain">
+              <option value="">All Domains</option>
+              <option value="Technology">Technology</option>
+              <option value="Finance">Finance</option>
+              <option value="HR">HR</option>
+              <option value="Operations">Operations</option>
+            </select>
+            <select class="filter-select" data-filter="status">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            <div class="sort-controls">
+              <button class="sort-btn active" data-sort="name" data-dir="asc">A-Z</button>
+              <button class="sort-btn" data-sort="name" data-dir="desc">Z-A</button>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table" id="candidates-table">
+              <thead>
+                <tr>
+                  <th data-sort="name">Candidate Name</th>
+                  <th data-sort="email">Email ID</th>
+                  <th>Mobile</th>
+                  <th data-sort="domain">Domain</th>
+                  <th data-sort="assessment">Assessment</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="candidates-tbody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar" data-table="candidates"></div>
+        </section>
+
+        <!-- ASSESSMENT MANAGEMENT -->
+        <section class="module-panel" id="module-assessments">
+          <div class="module-header">
+            <div>
+              <h1>Assessment Management</h1>
+              <p>Create and manage enterprise assessments</p>
+            </div>
+            <div class="module-actions">
+              <a href="create-assessment.html" class="btn btn-gold btn-ripple">+ Create Assessment</a>
+              <a href="create-survey.html" class="btn btn-outline btn-sm">+ Create Survey</a>
+            </div>
+          </div>
+          <div class="filter-bar" id="assessment-filters">
+            <input type="text" class="filter-input" placeholder="Search title..." data-filter="title">
+            <select class="filter-select" data-filter="category">
+              <option value="">All Categories</option>
+              <option value="Technical">Technical</option>
+              <option value="Finance">Finance</option>
+              <option value="HR">HR</option>
+              <option value="Behavioral">Behavioral</option>
+            </select>
+            <select class="filter-select" data-filter="type">
+              <option value="">All Types</option>
+              <option value="Quiz">Quiz</option>
+              <option value="Survey">Survey</option>
+            </select>
+            <select class="filter-select" data-filter="status">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table" id="assessments-table">
+              <thead>
+                <tr>
+                  <th data-sort="title">Assessment Title</th>
+                  <th data-sort="category">Category</th>
+                  <th data-sort="type">Type</th>
+                  <th data-sort="questions">Questions</th>
+                  <th data-sort="duration">Duration</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="assessments-tbody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar" data-table="assessments"></div>
+        </section>
+
+        <!-- QUIZ MANAGEMENT -->
+        <section class="module-panel" id="module-quiz">
+          <div class="module-header">
+            <div>
+              <h1>Quiz Management</h1>
+              <p>Question bank tabulation — search, filter & manage</p>
+            </div>
+          </div>
+
+          <div class="filter-bar" id="quiz-filters">
+            <input type="text" class="filter-input" placeholder="Search question..." data-filter="text">
+            <select class="filter-select" data-filter="category">
+              <option value="">All Categories</option>
+              <option>Aptitude</option>
+              <option>Technical</option>
+              <option>Survey</option>
+              <option>HR</option>
+            </select>
+            <select class="filter-select" data-filter="subcategory">
+              <option value="">Subcategory</option>
+              <option>Time & Work</option>
+              <option>JavaScript</option>
+              <option>HR Feedback</option>
+              <option>Algorithms</option>
+              <option>Data Structures</option>
+            </select>
+            <select class="filter-select" data-filter="assessment">
+              <option value="">Assessment</option>
+              <option>Assessment 1</option>
+              <option>UI Developer Aptitude</option>
+            </select>
+            <div class="sort-controls">
+              <button class="sort-btn active" data-sort="text" data-dir="asc">A-Z</button>
+              <button class="sort-btn" data-sort="text" data-dir="desc">Z-A</button>
+            </div>
+          </div>
+          <div class="table-wrapper quiz-table-wrap">
+            <table class="data-table quiz-mgmt-table" id="quiz-table">
+              <thead>
+                <tr>
+                  <th data-sort="text">Question</th>
+                  <th data-sort="category">Category</th>
+                  <th data-sort="subcategory">Subcategory</th>
+                  <th data-sort="assessment">Assessment</th>
+                  <th class="quiz-actions-col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="quiz-tbody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar" data-table="quiz"></div>
+        </section>
+
+        <section class="module-panel" id="module-surveys">
+          <div class="module-header">
+            <div><h1>Survey Responses</h1><p>Candidate feedback and satisfaction analytics</p></div>
+            <a href="create-survey.html" class="btn btn-gold btn-ripple">+ Create Survey</a>
+          </div>
+          <div class="filter-bar">
+            <input type="text" class="filter-input" id="survey-search" placeholder="Search candidate...">
+            <select class="filter-select" id="survey-rating-filter"><option value="">All Ratings</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+          </div>
+          <div class="charts-grid" style="grid-template-columns:1fr 1fr;margin-bottom:24px">
+            <div class="glass-card chart-card" style="min-height:auto;padding:20px"><h3>Rating Distribution</h3><div class="chart-compact-wrap"><canvas id="survey-pie-chart"></canvas></div></div>
+            <div class="glass-card" style="padding:20px"><h3 style="margin-bottom:12px;color:var(--gold-primary)">Response Summary</h3><p id="survey-summary-text" class="text-muted">Loading...</p></div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table"><thead><tr><th>Candidate</th><th>Assessment</th><th>Rating</th><th>Feedback</th><th>Suggestions</th><th>Date</th></tr></thead><tbody id="survey-tbody"></tbody></table>
+          </div>
+          <div class="pagination-bar" id="survey-pagination"></div>
+        </section>
+
+        <section class="module-panel" id="module-notifications">
+          <div class="module-header">
+            <div><h1>Notification Center</h1><p>Live alerts and system activity</p></div>
+            <button class="btn btn-ghost btn-sm" id="mark-all-read">Mark all read</button>
+          </div>
+          <ul class="notification-list" id="notification-list"></ul>
+        </section>
+
+        <section class="module-panel" id="module-settings">
+          <div class="module-header"><div><h1>Settings</h1><p>Platform configuration</p></div></div>
+          <div class="settings-sections">
+            <div class="glass-card settings-block">
+              <h3>General Settings</h3>
+              <div class="form-grid settings-form">
+                <div class="form-group"><input type="text" class="form-input" id="set-company" placeholder=" " value="Aetram Group"><label class="form-label">Company Name</label></div>
+                <div class="form-group"><input type="text" class="form-input" id="set-timezone" placeholder=" " value="UTC+5:30"><label class="form-label">Timezone</label></div>
+                <div class="form-group"><select class="form-input" id="set-lang" style="padding-top:16px"><option>English</option><option>Hindi</option></select><label class="form-label">Language</label></div>
+                <div class="form-group full"><label class="text-muted" style="font-size:0.85rem">Logo upload</label><input type="file" id="set-logo" accept="image/*" class="filter-input" style="width:100%;margin-top:8px"></div>
+              </div>
+            </div>
+            <div class="glass-card settings-block">
+              <h3>Security Settings</h3>
+              <div class="settings-form">
+                <label class="remember-me"><input type="number" id="set-jwt-timeout" value="24" min="1" style="width:60px;margin-right:8px"> JWT timeout (hours)</label>
+                <label class="remember-me" style="display:block;margin-top:12px"><input type="checkbox" checked> Enable OTP verification</label>
+                <label class="remember-me" style="display:block;margin-top:8px"><input type="checkbox" checked> Strong password rules</label>
+              </div>
+            </div>
+            <div class="glass-card settings-block">
+              <h3>Assessment Settings</h3>
+              <div class="settings-form">
+                <label class="remember-me"><input type="checkbox" id="set-proctor-default" checked> AI Proctoring default ON</label>
+                <label class="remember-me" style="display:block;margin-top:8px"><input type="checkbox" checked> Fullscreen enforcement</label>
+                <label class="remember-me" style="display:block;margin-top:8px"><input type="checkbox" checked> Auto-submit on timeout</label>
+              </div>
+            </div>
+            <div class="glass-card settings-block">
+              <h3>Email Settings</h3>
+              <div class="form-grid settings-form">
+                <div class="form-group full"><input type="text" class="form-input" placeholder=" " value="smtp.enterprise.com"><label class="form-label">SMTP Host</label></div>
+                <div class="form-group"><input type="email" class="form-input" placeholder=" " value="noreply@aetramgroup.com"><label class="form-label">From Email</label></div>
+                <label class="remember-me full"><input type="checkbox" checked> Send assessment invitations</label>
+                <label class="remember-me full"><input type="checkbox" checked> Send shortlist notifications</label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-gold btn-sm" style="margin-top:20px" id="save-settings">Save Settings</button>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Creator Modal -->
+  <div class="modal-overlay" id="creator-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="creator-modal-title">Add Creator</h3>
+        <button class="modal-close" data-close="creator-modal" aria-label="Close">&times;</button>
+      </div>
+      <form id="creator-form">
+        <div class="modal-form-grid">
+          <div class="form-group"><input type="text" class="form-input" id="cr-name" placeholder=" " required><label class="form-label">Name</label></div>
+          <div class="form-group"><input type="email" class="form-input" id="cr-email" placeholder=" " required><label class="form-label">Email</label></div>
+          <div class="form-group"><input type="tel" class="form-input" id="cr-mobile" placeholder=" " required><label class="form-label">Mobile</label></div>
+          <div class="form-group"><input type="text" class="form-input" id="cr-company" placeholder=" " required><label class="form-label">Company</label></div>
+          <div class="floating-group form-group">
+            <select class="form-input" id="cr-spec" required>
+              <option value="" disabled selected></option>
+              <option>Frontend Development</option>
+              <option>Backend Development</option>
+              <option>Full Stack Development</option>
+              <option>Data Science</option>
+              <option>AI &amp; ML</option>
+              <option>Cloud Computing</option>
+              <option>Cyber Security</option>
+            </select>
+            <label>Specialization</label>
+          </div>
+          <div class="form-group"><input type="text" class="form-input" id="cr-designation" placeholder=" " required><label class="form-label">Designation</label></div>
+          <div class="form-group full" id="creator-status-row">
+            <label class="remember-me"><input type="checkbox" id="cr-status" checked> Active Status</label>
+            <p class="text-muted" style="font-size:0.75rem;margin-top:6px">When editing a creator, change active status only via the table toggle (with confirmation).</p>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-gold btn-full" style="margin-top:20px">Save Creator</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Candidate Modal -->
+  <div class="modal-overlay" id="candidate-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="candidate-modal-title">Add Candidate</h3>
+        <button class="modal-close" data-close="candidate-modal" aria-label="Close">&times;</button>
+      </div>
+      <form id="candidate-form">
+        <div class="modal-form-grid">
+          <div class="form-group"><input type="text" class="form-input" id="ca-name" placeholder=" " required><label class="form-label">Candidate Name</label></div>
+          <div class="form-group"><input type="email" class="form-input" id="ca-email" placeholder=" " required><label class="form-label">Email</label></div>
+          <div class="form-group"><input type="tel" class="form-input" id="ca-mobile" placeholder=" " required><label class="form-label">Mobile</label></div>
+          <div class="form-group full"><input type="text" class="form-input" id="ca-assessment" placeholder=" " required><label class="form-label">Assigned Assessment</label></div>
+          <div class="form-group"><input type="text" class="form-input" id="ca-domain" placeholder=" " required><label class="form-label">Domain</label></div>
+          <div class="form-group full"><label class="remember-me"><input type="checkbox" id="ca-status" checked> Active</label></div>
+        </div>
+        <button type="submit" class="btn btn-gold btn-full" style="margin-top:20px">Save Candidate</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Quiz Edit Modal -->
+  <div class="modal-overlay" id="quiz-modal">
+    <div class="modal" style="max-width:560px">
+      <div class="modal-header">
+        <h3>Edit Question</h3>
+        <button class="modal-close" data-close="quiz-modal" aria-label="Close">&times;</button>
+      </div>
+      <form id="quiz-form">
+        <div class="modal-form-grid">
+          <div class="form-group full"><input type="text" class="form-input" id="qz-text" placeholder=" " required><label class="form-label">Question</label></div>
+          <div class="form-group"><input type="text" class="form-input" id="qz-category" placeholder=" " required><label class="form-label">Category</label></div>
+          <div class="form-group"><input type="text" class="form-input" id="qz-subcategory" placeholder=" " required><label class="form-label">Subcategory</label></div>
+          <div class="form-group full"><input type="text" class="form-input" id="qz-assessment" placeholder=" " required><label class="form-label">Assessment</label></div>
+        </div>
+        <button type="submit" class="btn btn-gold btn-full" style="margin-top:20px">Save Question</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Modal -->
+  <div class="modal-overlay" id="view-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Record Details</h3>
+        <button class="modal-close" data-close="view-modal" aria-label="Close">&times;</button>
+      </div>
+      <div id="view-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Status Confirm -->
+  <div class="modal-overlay" id="status-modal">
+    <div class="modal" style="max-width:420px">
+      <div class="modal-header"><h3>Confirm Status Change</h3><button class="modal-close" data-close="status-modal">&times;</button></div>
+      <p id="status-modal-text" style="margin-bottom:24px;color:var(--text-secondary)"></p>
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-gold" id="confirm-status">Confirm</button>
+        <button class="btn btn-ghost" data-close="status-modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirm -->
+  <div class="modal-overlay" id="delete-modal">
+    <div class="modal" style="max-width:400px">
+      <div class="modal-header"><h3>Confirm Delete</h3><button class="modal-close" data-close="delete-modal">&times;</button></div>
+      <p style="margin-bottom:24px;color:var(--text-secondary)">Are you sure you want to delete this record? This action cannot be undone.</p>
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-danger btn-ripple" id="confirm-delete">Delete</button>
+        <button class="btn btn-ghost" data-close="delete-modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/admin-shared.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Listings | SurveyIQ</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/candidate.css">
+  <link rel="stylesheet" href="css/jobs.css">
+</head>
+<body>
+  <header class="candidate-header jobs-header">
+    <div class="title-block">
+      <h2>Open Job Opportunities</h2>
+      <span>Apply directly from the SurveyIQ Candidate Portal</span>
+    </div>
+    <a class="btn btn-gold btn-ripple" href="candidate-instructions.html">Back to Assessments</a>
+  </header>
+
+  <main class="jobs-page">
+    <section class="job-panel glass-card">
+      <div class="jobs-filter-row">
+        <input type="text" class="form-input" id="job-search" placeholder="Search roles or keywords" autocomplete="off">
+        <select class="form-input" id="job-domain-filter">
+          <option value="">All domains</option>
+          <option value="Technology">Technology</option>
+          <option value="Finance">Finance</option>
+          <option value="Operations">Operations</option>
+        </select>
+        <select class="form-input" id="job-level-filter">
+          <option value="">Experience level</option>
+          <option value="Entry-level">Entry-level</option>
+          <option value="Mid-level">Mid-level</option>
+          <option value="Senior">Senior</option>
+        </select>
+        <button class="btn btn-gold btn-sm btn-ripple" id="refresh-jobs">Refresh</button>
+      </div>
+      <div id="job-cards" class="jobs-grid"></div>
+      <div id="job-empty" class="jobs-empty">No matching openings were found. Try updating the filters.</div>
+    </section>
+
+    <section class="verification-panel glass-card">
+      <h3>Candidate Verification</h3>
+      <p>Confirm your email and phone before applying for a role.</p>
+      <div class="verification-form">
+        <input type="email" class="form-input" id="verify-email" placeholder="Email" autocomplete="email">
+        <input type="text" class="form-input" id="verify-phone" placeholder="Phone number" autocomplete="tel">
+        <button class="btn btn-gold btn-sm btn-ripple" id="verify-candidate">Verify</button>
+      </div>
+      <div id="verify-message" class="text-muted"></div>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/jobs.js"></script>
+  <script>
+    JobsApp.initListings();
+  </script>
+</body>
+</html>

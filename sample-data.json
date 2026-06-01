@@ -1,0 +1,30 @@
+{
+  "creators": [
+    {"id":1,"name":"Dr. Sarah Mitchell","email":"sarah.m@aetram.com","mobile":"+91 98765 43210","company":"Aetram Tech","specialization":"Full Stack","designation":"Senior Creator","experience":"8 years","status":true},
+    {"id":2,"name":"James Chen","email":"james.chen@aetram.com","mobile":"+91 87654 32109","company":"Aetram Finance","specialization":"Data Science","designation":"Lead Creator","experience":"10 years","status":true},
+    {"id":3,"name":"Priya Sharma","email":"priya.s@aetram.com","mobile":"+91 76543 21098","company":"Aetram HR","specialization":"HR Analytics","designation":"Creator","experience":"5 years","status":false},
+    {"id":4,"name":"Michael Torres","email":"m.torres@aetram.com","mobile":"+91 65432 10987","company":"Aetram Global","specialization":"Cloud Architecture","designation":"Principal Creator","experience":"12 years","status":true},
+    {"id":5,"name":"Emily Watson","email":"emily.w@aetram.com","mobile":"+91 54321 09876","company":"Aetram Consulting","specialization":"Business Analysis","designation":"Creator","experience":"6 years","status":true},
+    {"id":6,"name":"Raj Patel","email":"raj.patel@aetram.com","mobile":"+91 43210 98765","company":"Aetram Tech","specialization":"DevOps","designation":"Creator","experience":"7 years","status":false},
+    {"id":7,"name":"Lisa Anderson","email":"lisa.a@aetram.com","mobile":"+91 32109 87654","company":"Aetram Finance","specialization":"Risk Management","designation":"Senior Creator","experience":"9 years","status":true},
+    {"id":8,"name":"David Kim","email":"david.kim@aetram.com","mobile":"+91 21098 76543","company":"Aetram Global","specialization":"AI/ML","designation":"Lead Creator","experience":"11 years","status":true}
+  ],
+  "candidates": [
+    {"id":1,"name":"Arjun Mehta","email":"arjun.m@email.com","mobile":"+91 99887 76655","domain":"Technology","assessment":"UI Developer Aptitude","status":true},
+    {"id":2,"name":"Sneha Reddy","email":"sneha.r@email.com","mobile":"+91 88776 65544","domain":"Finance","assessment":"Financial Analyst Test","status":true},
+    {"id":3,"name":"Vikram Singh","email":"vikram.s@email.com","mobile":"+91 77665 54433","domain":"HR","assessment":"HR Competency Survey","status":false},
+    {"id":4,"name":"Ananya Iyer","email":"ananya.i@email.com","mobile":"+91 66554 43322","domain":"Technology","assessment":"Full Stack Assessment","status":true},
+    {"id":5,"name":"Rohan Gupta","email":"rohan.g@email.com","mobile":"+91 55443 32211","domain":"Operations","assessment":"Leadership Survey","status":true},
+    {"id":6,"name":"Kavya Nair","email":"kavya.n@email.com","mobile":"+91 44332 21100","domain":"Technology","assessment":"Data Science Quiz","status":false},
+    {"id":7,"name":"Aditya Joshi","email":"aditya.j@email.com","mobile":"+91 33221 10099","domain":"Marketing","assessment":"Marketing Aptitude","status":true},
+    {"id":8,"name":"Meera Krishnan","email":"meera.k@email.com","mobile":"+91 22110 09988","domain":"Technology","assessment":"UI Developer Aptitude","status":true}
+  ],
+  "assessments": [
+    {"id":1,"title":"UI Developer Aptitude","category":"Technical","type":"Quiz","questions":25,"duration":"45 min","status":true},
+    {"id":2,"title":"Financial Analyst Test","category":"Finance","type":"Quiz","questions":30,"duration":"60 min","status":true},
+    {"id":3,"title":"HR Competency Survey","category":"HR","type":"Survey","questions":20,"duration":"30 min","status":false},
+    {"id":4,"title":"Full Stack Assessment","category":"Technical","type":"Quiz","questions":40,"duration":"90 min","status":true},
+    {"id":5,"title":"Leadership Survey","category":"Behavioral","type":"Survey","questions":15,"duration":"25 min","status":true},
+    {"id":6,"title":"Data Science Quiz","category":"Technical","type":"Quiz","questions":35,"duration":"75 min","status":true}
+  ]
+}

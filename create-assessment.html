@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Assessment | Aetram Group</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/create-assessment.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+</head>
+<body class="builder-layout">
+  <header class="builder-topbar">
+    <h1 style="display:flex;align-items:center;gap:16px">
+      <a href="admin-dashboard.html" style="color:inherit">←</a>
+      <img src="assets/logo/company-logo.png" alt="" class="company-logo" style="height:28px" onerror="this.src='assets/logo/company-logo.svg'">
+      <span id="builder-title">Assessment Builder</span>
+    </h1>
+    <div class="actions">
+      <button class="btn btn-ghost btn-sm" id="save-draft">Save Draft</button>
+      <button class="btn btn-outline btn-sm" id="preview-btn">Preview</button>
+      <button class="btn btn-gold btn-sm btn-ripple" id="publish-top">Publish</button>
+      <div class="admin-avatar" style="width:36px;height:36px;font-size:0.75rem">AD</div>
+    </div>
+  </header>
+
+  <div class="builder-body">
+    <aside class="stepper-sidebar" id="stepper">
+      <div class="step-item active" data-step="1"><div class="step-num">1</div><div class="step-info"><h4>Assessment Details</h4><p>Title, schedule, type</p></div></div>
+      <div class="step-item" data-step="2"><div class="step-num">2</div><div class="step-info"><h4>Settings</h4><p>Proctoring & rules</p></div></div>
+      <div class="step-item" data-step="3"><div class="step-num">3</div><div class="step-info"><h4>Candidate Assignment</h4><p>Individual or team</p></div></div>
+      <div class="step-item" data-step="4"><div class="step-num">4</div><div class="step-info"><h4>Question Builder</h4><p>Create questions</p></div></div>
+      <div class="step-item" data-step="5"><div class="step-num">5</div><div class="step-info"><h4>Import Question Bank</h4><p>Bulk import</p></div></div>
+      <div class="step-item" data-step="6"><div class="step-num">6</div><div class="step-info"><h4>Preview</h4><p>Candidate view</p></div></div>
+      <div class="step-item" data-step="7"><div class="step-num">7</div><div class="step-info"><h4>Publish</h4><p>Go live</p></div></div>
+    </aside>
+
+    <main class="step-content" id="step-content">
+      <!-- Step 1 -->
+      <section class="step-panel active" data-step="1">
+        <h2>Assessment Details</h2>
+        <p class="step-desc">Configure core assessment information and scheduling</p>
+        <div class="info-alert"><span class="icon">ℹ</span><span>Candidates can access the assessment ONLY during the configured start and end time. Access will automatically expire after the schedule ends.</span></div>
+        <div class="form-card glass-card">
+          <div class="form-grid">
+            <div class="form-group"><input type="text" class="form-input" id="test-title" placeholder=" " required><label class="form-label">Test Title</label></div>
+            <div class="form-group"><input type="text" class="form-input" id="job-title" placeholder=" " required><label class="form-label">Job Title</label></div>
+            <div class="form-group"><select class="form-input" id="category" style="padding-top:16px"><option value="">Select Category</option><option>Technical</option><option>Aptitude</option><option>HR</option><option>Survey</option></select><label class="form-label">Category</label></div>
+            <div class="form-group"><input type="date" class="form-input" id="assess-date" placeholder=" " required><label class="form-label">Assessment Date</label></div>
+            <div class="form-group"><input type="time" class="form-input" id="start-time" required><label class="form-label">Start Time</label></div>
+            <div class="form-group"><input type="time" class="form-input" id="end-time" required><label class="form-label">End Time</label></div>
+            <div class="form-group"><input type="number" class="form-input" id="duration" placeholder=" " min="5" required><label class="form-label">Duration (minutes)</label></div>
+            <div class="form-group"><input type="number" class="form-input" id="total-questions" placeholder=" " min="1" required><label class="form-label">Total Questions</label></div>
+            <div class="form-group"><select class="form-input" id="assess-type" style="padding-top:16px"><option value="Quiz">Quiz</option></select><label class="form-label">Assessment Type</label></div>
+            <div class="form-group quiz-only"><input type="number" class="form-input" id="pass-pct" placeholder=" " min="0" max="100" value="60"><label class="form-label">Pass Percentage</label></div>
+            <div class="form-group full"><select class="form-input" id="access-type" style="padding-top:16px"><option>Open Access</option><option>Restricted Access</option><option>Scheduled Access</option></select><label class="form-label">Access Type</label></div>
+          </div>
+        </div>
+        <div class="form-card glass-card hidden" id="survey-settings-card">
+          <h3 style="margin-bottom:18px;color:var(--gold-primary);">Survey Options</h3>
+          <div class="form-grid">
+            <div class="form-group"><select class="form-input" id="survey-audience" style="padding-top:16px"><option value="">Select Audience</option><option>Internal</option><option>External</option><option>All Employees</option></select><label class="form-label">Survey Audience</label></div>
+            <div class="form-group"><input type="date" class="form-input" id="response-deadline" placeholder=" "><label class="form-label">Response Deadline</label></div>
+            <div class="survey-toggle-row"><span>Allow Anonymous Responses</span><label class="toggle-switch"><input type="checkbox" id="anonymous-response"><span class="toggle-slider"></span></label></div>
+            <div class="survey-toggle-row"><span>Allow Multiple Responses</span><label class="toggle-switch"><input type="checkbox" id="multiple-responses"><span class="toggle-slider"></span></label></div>
+            <div class="survey-toggle-row"><span>Allow Edit Response</span><label class="toggle-switch"><input type="checkbox" id="edit-response"><span class="toggle-slider"></span></label></div>
+            <div class="survey-toggle-row"><span>Public Survey</span><label class="toggle-switch"><input type="checkbox" id="public-survey"><span class="toggle-slider"></span></label></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2 -->
+      <section class="step-panel" data-step="2">
+        <h2>Assessment Settings</h2>
+        <p class="step-desc">Configure proctoring and security features</p>
+        <div class="settings-grid" id="settings-grid"></div>
+        <div class="form-card glass-card" style="margin-top:24px">
+          <label style="color:var(--gold-primary);font-size:0.9rem;display:block;margin-bottom:12px">Additional Terms & Conditions</label>
+          <textarea class="workspace-textarea" id="additional-terms" style="min-height:140px;width:100%;padding:16px;background:rgba(0,0,0,0.3);border:1px solid var(--border-subtle);border-radius:12px;color:#fff;font-family:inherit" placeholder="Enter additional rules or instructions for candidates…" maxlength="2000"></textarea>
+          <div class="char-counter" style="text-align:right;margin-top:8px"><span id="terms-count">0</span>/2000</div>
+        </div>
+      </section>
+
+      <!-- Step 3 -->
+      <section class="step-panel" data-step="3">
+        <h2>Candidate Assignment</h2>
+        <p class="step-desc">Assign assessment to individuals or teams</p>
+        <div style="display:flex;gap:12px;margin-bottom:24px">
+          <button class="btn btn-gold btn-sm assign-mode active" data-mode="individual">Individual Assignment</button>
+          <button class="btn btn-outline btn-sm assign-mode" data-mode="group">Group / Team Assignment</button>
+        </div>
+        <div id="assign-individual" class="form-card glass-card">
+          <input type="text" class="filter-input" placeholder="Search candidate..." id="candidate-search" style="width:100%;padding:12px;margin-bottom:16px;background:rgba(255,255,255,0.03);border:1px solid var(--border-subtle);border-radius:8px;color:#fff">
+          <div class="table-wrapper"><table class="data-table"><thead><tr><th><input type="checkbox" id="select-all-candidates"></th><th>Name</th><th>Email</th><th>Mobile</th><th>Status</th></tr></thead><tbody id="assign-candidates-tbody"></tbody></table></div>
+          <p class="text-muted" style="margin-top:16px;font-size:0.85rem">Assessment invitation will be sent to selected candidates.</p>
+          <button class="btn btn-gold btn-sm" style="margin-top:12px" id="send-invite">Send Invitations</button>
+        </div>
+        <div id="assign-group" class="form-card glass-card hidden">
+          <div class="form-grid">
+            <div class="form-group full"><select class="form-input" id="team-select" multiple style="height:100px;padding:12px"><option>Engineering Team</option><option>Finance Department</option><option>HR Batch 2026</option><option>Operations Group</option></select><label class="form-label">Select Teams / Departments</label></div>
+          </div>
+          <div id="group-preview" style="margin-top:16px;padding:16px;background:rgba(201,162,39,0.08);border-radius:8px"></div>
+        </div>
+      </section>
+
+      <!-- Step 4 -->
+      <section class="step-panel" data-step="4">
+        <h2>Question Builder</h2>
+        <p class="step-desc">Create and configure assessment questions</p>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" id="q-progress" style="width:12%"></div></div>
+        <p style="font-size:0.85rem;color:var(--gold-primary);margin-bottom:20px" id="q-counter">Question 1 of 25 — <span id="q-pct">4</span>% complete</p>
+        <div class="qtype-grid" id="qtype-grid">
+          <div class="qtype-card active" data-type="mcq"><div class="icon">☑</div><span>MCQ</span></div>
+          <div class="qtype-card" data-type="truefalse"><div class="icon">✓✗</div><span>True / False</span></div>
+          <div class="qtype-card" data-type="short"><div class="icon">T</div><span>Short Text</span></div>
+          <div class="qtype-card" data-type="long"><div class="icon">¶</div><span>Long Answer</span></div>
+        </div>
+        <div class="form-card glass-card">
+          <div class="form-group full"><input type="text" class="form-input" id="q-title-input" placeholder=" "><label class="form-label">Question Title</label></div>
+          <div class="form-group full"><textarea class="workspace-textarea" id="q-desc" style="width:100%;min-height:80px;padding:12px;background:rgba(0,0,0,0.3);border:1px solid var(--border-subtle);border-radius:8px;color:#fff" placeholder="Question description (optional)"></textarea></div>
+          <div class="form-grid">
+            <div class="form-group"><select class="form-input" id="q-difficulty" style="padding-top:16px"><option>Easy</option><option selected>Medium</option><option>Hard</option></select><label class="form-label">Difficulty</label></div>
+            <div class="form-group"><input type="number" class="form-input" id="q-marks" value="1" min="1"><label class="form-label">Marks / Weightage</label></div>
+          </div>
+          <div class="upload-zone" id="image-upload"><p>Drag & Drop image or click to upload</p><p class="text-muted" style="font-size:0.8rem">PNG, JPG, SVG</p><img class="upload-preview hidden" id="img-preview"></div>
+          <div id="options-container"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+            <button class="btn btn-gold btn-sm" id="save-question">Save Question</button>
+            <button class="btn btn-outline btn-sm" id="save-add-next">Save & Add Next</button>
+            <button class="btn btn-ghost btn-sm" id="reset-question">Reset</button>
+            <button class="btn btn-ghost btn-sm" id="delete-question" style="color:var(--danger)">Delete</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 5 — Import Question Bank -->
+      <section class="step-panel" data-step="5">
+        <h2>Import Question Bank</h2>
+        <p class="step-desc">Upload PDF, set distribution, preview and save questions to this assessment</p>
+
+        <div class="glass-card import-bank-panel">
+          <div class="import-section">
+            <h3 class="import-section-title"><span>1</span> Question Source</h3>
+            <div class="bank-source-cards">
+              <div class="bank-source-card active" data-source="private" role="button" tabindex="0">
+                <h4>🔒 Private Mode</h4>
+                <p class="bank-helper">Only assigned candidates and creator can access these questions.</p>
+              </div>
+              <div class="bank-source-card" data-source="public" role="button" tabindex="0">
+                <h4>🌐 Public Mode</h4>
+                <p class="bank-helper">Questions will appear in the shared public question bank.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="import-section">
+            <h3 class="import-section-title"><span>2</span> Upload PDF Question Bank</h3>
+            <div class="upload-container" id="upload-container">
+              <div class="upload-box" id="upload-drop-zone">
+                <i class="fa-solid fa-file-pdf upload-icon" aria-hidden="true"></i>
+                <h3>Upload PDF Question Bank</h3>
+                <p>Drag &amp; Drop your PDF file here</p>
+                <button type="button" class="upload-btn" id="browsePdfBtn">Browse PDF</button>
+                <input type="file" id="pdfUpload" accept=".pdf" hidden>
+                <p class="upload-formats">Supported: PDF only • Max recommended 25MB</p>
+              </div>
+            </div>
+            <div class="upload-progress" id="upload-progress"><div class="upload-progress-fill" id="upload-progress-fill"></div></div>
+            <div class="parsing-loader" id="parsing-loader"><span class="spinner parsing-spinner"></span> Parsing PDF &amp; extracting questions…</div>
+            <div class="extraction-animation" id="extraction-animation" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div id="import-file-status" class="import-file-status"></div>
+          </div>
+
+          <div class="import-section">
+            <h3 class="import-section-title"><span>3</span> Question Distribution <span class="admin-only-badge">Admin/Creator only</span></h3>
+            <p class="text-muted import-section-desc">Difficulty is never shown to candidates during assessments.</p>
+            <div class="dist-sliders import-dist">
+              <div class="dist-slider-row">
+                <label>Easy Questions</label>
+                <div class="dist-slider-track"><input type="range" class="dist-range" id="easy-range" min="0" max="100" value="40"></div>
+                <span class="dist-pct" id="easy-val">40%</span>
+                <span class="dist-count" id="easy-count">20</span>
+              </div>
+              <div class="dist-slider-row">
+                <label>Medium Questions</label>
+                <div class="dist-slider-track"><input type="range" class="dist-range" id="medium-range" min="0" max="100" value="40"></div>
+                <span class="dist-pct" id="medium-val">40%</span>
+                <span class="dist-count" id="medium-count">20</span>
+              </div>
+              <div class="dist-slider-row">
+                <label>Hard Questions</label>
+                <div class="dist-slider-track"><input type="range" class="dist-range" id="hard-range" min="0" max="100" value="20"></div>
+                <span class="dist-pct" id="hard-val">20%</span>
+                <span class="dist-count" id="hard-count">10</span>
+              </div>
+            </div>
+            <div class="dist-meta-row">
+              <span>Total Questions Selected: <strong id="import-total-q">50</strong></span>
+              <input type="number" id="import-total-input" class="filter-input builder-filter-input" value="50" min="1" max="500" aria-label="Total questions">
+            </div>
+            <div class="dist-total valid" id="dist-total">Distribution total: 100% ✓</div>
+            <div class="dist-validation-meter"><div class="dist-validation-fill" id="dist-validation-fill" style="width:100%"></div></div>
+          </div>
+
+          <div class="import-section">
+            <h3 class="import-section-title"><span>4</span> Import Preview</h3>
+            <div id="import-validation-msg" class="import-validation-banner"></div>
+            <div class="table-wrapper import-preview-table">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th></th><th>Question</th><th>Options</th><th>Correct Answer</th><th>Type</th><th></th>
+                  </tr>
+                </thead>
+                <tbody id="import-extract-tbody">
+                  <tr><td colspan="6" class="import-placeholder">Upload a PDF to preview extracted questions</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button type="button" class="btn btn-gold btn-ripple" id="save-imported-questions" style="margin-top:20px;display:none">Save Question Bank</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 6 -->
+      <section class="step-panel" data-step="6">
+        <h2>Live Assessment Preview</h2>
+        <p class="step-desc">Admin view — includes correct answers (hidden from candidates when published)</p>
+        <div class="preview-frame" id="preview-frame">
+          <div class="glass-card" style="padding:24px">
+            <h3 id="preview-title">Assessment Preview</h3>
+            <p class="text-muted" style="margin:12px 0" id="preview-meta">45 min • 25 Questions • Quiz</p>
+            <p class="text-muted" style="font-size:0.8rem;margin-bottom:16px">Published assessments show questions and options only — never correct answers.</p>
+            <div id="preview-questions-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 7 -->
+      <section class="step-panel" data-step="7">
+        <h2>Publish Assessment</h2>
+        <p class="step-desc">Review summary and publish to candidates</p>
+        <div class="publish-summary" id="publish-summary"></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-ghost" id="cancel-publish">Cancel</button>
+          <button class="btn btn-outline" id="schedule-publish">Schedule Assessment</button>
+          <button class="btn btn-gold btn-ripple" id="publish-now">Publish Now</button>
+        </div>
+        <div class="success-publish glass-card" id="publish-success">
+          <div class="success-check" style="width:80px;height:80px;border-radius:50%;background:rgba(34,197,94,0.15);border:2px solid var(--success);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 24px">✓</div>
+          <h2>Assessment Published Successfully</h2>
+          <p class="text-gold" style="margin:16px 0" id="assessment-id">ID: AET-2026-XXXX</p>
+          <button class="btn btn-outline btn-sm" id="copy-link">Copy Assessment Link</button>
+          <a href="admin-dashboard.html" class="btn btn-gold btn-sm" style="margin-left:12px">Back to Dashboard</a>
+        </div>
+      </section>
+
+      <div class="step-nav-footer">
+        <button class="btn btn-ghost" id="step-prev" disabled>← Previous</button>
+        <button class="btn btn-gold btn-ripple" id="step-next">Continue →</button>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="publish-modal">
+    <div class="modal">
+      <h3>Confirm Publish</h3>
+      <p style="margin:16px 0;color:var(--text-secondary)">Are you sure you want to publish this assessment? Candidates will be notified immediately.</p>
+      <div id="publish-modal-summary" style="margin-bottom:20px;font-size:0.9rem"></div>
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-gold" id="confirm-publish">Publish</button>
+        <button class="btn btn-ghost" data-close="publish-modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/create-assessment.js"></script>
+</body>
+</html>

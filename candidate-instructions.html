@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Instructions | Aetram Group</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/candidate.css">
+</head>
+<body>
+  <header class="candidate-header">
+    <div class="title-block">
+      <h2 id="assessment-title">Aptitude Assessment — UI Developer</h2>
+      <span>Aetram Group of Companies</span>
+    </div>
+    <div class="timer-card" id="preview-timer">
+      <div>
+        <div class="timer-label">Duration</div>
+        <div class="timer-value" id="preview-time">45:00</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="instructions-page">
+    <div class="instruction-card glass-card">
+      <h1>Pre-Assessment Instructions</h1>
+      <p class="subtitle">Please read all rules carefully before starting</p>
+      <ul class="rules-list">
+        <li><span class="check-icon">✓</span> Tab switching is strictly prohibited during the assessment</li>
+        <li><span class="check-icon">✓</span> Assessment will auto-submit when the timer reaches zero</li>
+        <li><span class="check-icon">✓</span> AI-powered activity monitoring is enabled throughout</li>
+        <li><span class="check-icon">✓</span> Fullscreen mode is required for the entire duration</li>
+        <li><span class="check-icon">✓</span> Browser refresh is restricted and may invalidate your session</li>
+        <li><span class="check-icon">✓</span> Multiple policy violations will terminate the assessment immediately</li>
+      </ul>
+      <div class="terms-agree" id="terms-agree" role="button" tabindex="0" aria-checked="false">
+        <div class="custom-checkbox" aria-hidden="true"></div>
+        <span>I Agree to Terms & Conditions</span>
+      </div>
+      <div class="action-blocks" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;">
+        <button class="btn btn-gold btn-lg btn-full btn-ripple" id="start-test-btn" disabled>Start Assessment</button>
+        <a href="job-listings.html" class="btn btn-outline btn-lg btn-full btn-ripple">Browse Job Openings</a>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal-overlay warning-modal" id="violation-modal">
+    <div class="modal">
+      <h3>⚠ Policy Violation Warning</h3>
+      <p style="margin:20px 0;color:var(--text-secondary);line-height:1.7" id="violation-message">
+        Warning: Tab switching or exiting fullscreen is prohibited. Further violations will terminate the assessment.
+      </p>
+      <button class="btn btn-gold btn-full" id="violation-ok">I Understand</button>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/candidate.js"></script>
+  <script>
+    CandidateApp.initInstructions();
+  </script>
+</body>
+</html>

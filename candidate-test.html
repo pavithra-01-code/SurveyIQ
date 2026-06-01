@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Test | Aetram Group</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/candidate.css">
+</head>
+<body class="exam-lock-mode">
+  <header class="candidate-header">
+    <div class="title-block">
+      <h2>Aptitude Assessment — UI Developer</h2>
+      <span>Candidate Portal • Proctored Session</span>
+    </div>
+    <div class="timer-card" id="live-timer">
+      <div>
+        <div class="timer-label">Time Remaining</div>
+        <div class="timer-value" id="timer-display">45:00</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="test-layout">
+    <div class="test-main">
+      <div class="question-card glass-card" id="question-panel">
+        <div class="question-meta">
+          <span class="badge badge-category" id="q-category">Technical</span>
+        </div>
+        <div class="question-number" id="q-number">Question 1 of 10</div>
+        <p class="question-text" id="q-text">Loading question...</p>
+        <div class="options-list" id="options-list"></div>
+        <div class="question-actions">
+          <button class="btn btn-ghost btn-sm" id="btn-prev">← Previous</button>
+          <button class="btn btn-gold btn-sm btn-ripple" id="btn-save-next">Save & Next →</button>
+          <button class="btn btn-outline btn-sm" id="btn-review">Mark for Review</button>
+          <button class="btn btn-ghost btn-sm" id="btn-skip">Skip Question</button>
+          <button class="btn btn-ghost btn-sm" id="btn-clear">Clear Response</button>
+        </div>
+      </div>
+      <div class="workspace-section glass-card" style="padding:24px">
+        <h4>Rough Workspace</h4>
+        <textarea class="workspace-textarea" id="rough-workspace" placeholder="Use this space for calculations and notes…"></textarea>
+      </div>
+    </div>
+
+    <aside class="test-sidebar" id="test-sidebar">
+      <div class="nav-stats">
+        <div class="stat-box"><div class="num" id="stat-total">10</div><div class="lbl">Total</div></div>
+        <div class="stat-box"><div class="num" id="stat-answered">0</div><div class="lbl">Answered</div></div>
+        <div class="stat-box"><div class="num" id="stat-remaining">10</div><div class="lbl">Remaining</div></div>
+        <div class="stat-box"><div class="num" id="stat-review">0</div><div class="lbl">Review</div></div>
+      </div>
+      <div class="legend">
+        <span class="l-answered">Answered</span>
+        <span class="l-review">Review</span>
+        <span class="l-current">Current</span>
+        <span class="l-unanswered">Unanswered</span>
+        <span class="l-skipped">Skipped</span>
+      </div>
+      <div class="question-grid" id="question-grid"></div>
+      <button class="btn btn-danger btn-full btn-ripple" id="submit-assessment-btn" style="margin-top:auto">Submit Assessment</button>
+    </aside>
+  </div>
+
+  <button class="nav-drawer-toggle" id="nav-drawer-toggle" aria-label="Open navigator">☰</button>
+
+  <div class="modal-overlay" id="submit-modal">
+    <div class="modal" style="max-width:420px">
+      <h3>Confirm Submission</h3>
+      <p style="margin:20px 0;color:var(--text-secondary)">Are you sure you want to submit the assessment? You cannot change answers after submission.</p>
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-danger btn-ripple" id="confirm-submit">Submit Now</button>
+        <button class="btn btn-ghost" data-close="submit-modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay warning-modal" id="violation-modal">
+    <div class="modal">
+      <h3 id="violation-title">⚠ Warning</h3>
+      <p style="margin:20px 0;color:var(--text-secondary)" id="violation-text">Switching tabs or exiting fullscreen is prohibited.</p>
+      <button class="btn btn-gold btn-full" id="violation-dismiss">Continue</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay warning-modal" id="terminate-modal">
+    <div class="modal">
+      <h3 style="color:var(--danger)">Assessment Terminated</h3>
+      <p style="margin:20px 0">Assessment terminated due to policy violation. Your responses have been auto-submitted.</p>
+      <p class="text-muted" id="terminate-countdown">Redirecting in 5 seconds...</p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/candidate.js"></script>
+  <script>CandidateApp.initTest();</script>
+</body>
+</html>

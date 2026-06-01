@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports & Exports | Aetram Group</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin-dashboard.css">
+  <link rel="stylesheet" href="css/analytics.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="admin-sidebar"></aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <div class="admin-main" style="margin-left:var(--sidebar-width)">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+          <h2 style="font-size:1.1rem">Reports & Exports</h2>
+        </div>
+        <button class="btn btn-outline btn-sm" id="logout-btn">Logout</button>
+      </header>
+
+      <main class="analytics-content">
+        <div class="filter-panel">
+          <select class="filter-select" id="report-period">
+            <option value="daily">Daily</option>
+            <option value="weekly" selected>Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+          <select class="filter-select" id="report-type">
+            <option value="performance">Candidate Performance</option>
+            <option value="assessment">Assessment Analytics</option>
+            <option value="survey">Survey Analytics</option>
+            <option value="leaderboard">Leaderboard History</option>
+          </select>
+          <input type="date" class="filter-input" id="report-from">
+          <input type="date" class="filter-input" id="report-to">
+        </div>
+
+        <div class="glass-card" style="padding:32px;max-width:480px">
+          <h3 style="margin-bottom:12px;color:var(--gold-primary)">📄 PDF Export</h3>
+          <p class="text-muted" style="font-size:0.9rem;margin-bottom:24px;line-height:1.7">
+            Generate executive PDF reports for weekly/monthly cycles, candidate analytics, survey insights, and leaderboard history.
+          </p>
+          <button class="btn btn-gold btn-lg btn-ripple export-btn" data-format="pdf">Download PDF Report</button>
+        </div>
+
+        <div class="glass-card" style="padding:28px;margin-top:28px">
+          <h3 style="margin-bottom:20px">Recent PDF Reports</h3>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr><th>Report Name</th><th>Type</th><th>Period</th><th>Generated</th><th>Action</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Weekly Performance Summary</td><td>Performance</td><td>Weekly</td><td>May 19, 2026</td><td><button class="btn btn-ghost btn-sm export-btn" data-format="pdf">Download PDF</button></td></tr>
+                <tr><td>Assessment Analytics Q2</td><td>Assessment</td><td>Monthly</td><td>May 15, 2026</td><td><button class="btn btn-ghost btn-sm export-btn" data-format="pdf">Download PDF</button></td></tr>
+                <tr><td>Survey Satisfaction Report</td><td>Survey</td><td>Monthly</td><td>May 10, 2026</td><td><button class="btn btn-ghost btn-sm export-btn" data-format="pdf">Download PDF</button></td></tr>
+                <tr><td>Leaderboard History</td><td>Leaderboard</td><td>Yearly</td><td>May 1, 2026</td><td><button class="btn btn-ghost btn-sm export-btn" data-format="pdf">Download PDF</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/admin-shared.js"></script>
+  <script>
+    $(document).ready(function () {
+      AetramAdminSidebar.mount('#admin-sidebar', 'reports', 'Reports & Exports');
+      $('#sidebar-toggle').on('click', function () {
+        $('#admin-sidebar').toggleClass('open');
+        $('#sidebar-overlay').toggleClass('active');
+      });
+      $('#logout-btn').on('click', function () {
+        AetramAuth.clearSession();
+        window.location.href = 'index.html';
+      });
+      $('.export-btn').on('click', function () {
+        var type = $('#report-type').val();
+        var period = $('#report-period').val();
+        AetramLoader.show();
+        AetramAPI.ajax({
+          url: AetramConfig.baseUrl + '/reports/export-pdf',
+          type: 'POST',
+          data: { type: type, period: period },
+          error: function () {
+            setTimeout(function () {
+              AetramLoader.hide();
+              AetramToast.success(period + ' ' + type + ' PDF report ready (connect export API)');
+            }, 1200);
+          },
+          success: function () {
+            AetramLoader.hide();
+            AetramToast.success('PDF report generated');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

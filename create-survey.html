@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Survey | Aetram Group</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/create-survey.css">
+</head>
+<body class="survey-builder-layout">
+  <header class="survey-topbar">
+    <h1>
+      <a href="admin-dashboard.html" class="back-link">←</a>
+      <span>Survey Builder</span>
+    </h1>
+    <div class="topbar-actions">
+      <button class="btn btn-outline btn-sm" id="preview-btn">Preview</button>
+      <button class="btn btn-gold btn-sm btn-ripple" id="publish-top">Publish Survey</button>
+      <div class="admin-avatar">AD</div>
+    </div>
+  </header>
+
+  <div class="survey-body">
+    <aside class="survey-stepper" id="survey-stepper">
+      <div class="step-item active" data-step="1"><div class="step-num">1</div><div class="step-info"><h4>Survey Info</h4><p>Title, category, audience</p></div></div>
+      <div class="step-item" data-step="2"><div class="step-num">2</div><div class="step-info"><h4>Audience Rules</h4><p>Privacy and response settings</p></div></div>
+      <div class="step-item" data-step="3"><div class="step-num">3</div><div class="step-info"><h4>Question Designer</h4><p>Create survey questions</p></div></div>
+      <div class="step-item" data-step="4"><div class="step-num">4</div><div class="step-info"><h4>Preview</h4><p>Candidate experience</p></div></div>
+      <div class="step-item" data-step="5"><div class="step-num">5</div><div class="step-info"><h4>Publish</h4><p>Review and deploy</p></div></div>
+    </aside>
+
+    <main class="survey-main" id="survey-main">
+      <section class="survey-panel active" data-step="1">
+        <h2>Survey Details</h2>
+        <p class="step-desc">Set the survey title, goal, and target audience.</p>
+        <div class="form-card glass-card">
+          <div class="form-grid">
+            <div class="form-group full"><input type="text" class="form-input" id="survey-title" placeholder=" " required><label class="form-label">Survey Title</label></div>
+            <div class="form-group full"><textarea class="workspace-textarea" id="survey-description" placeholder=" " rows="4"></textarea><label class="form-label">Description</label></div>
+            <div class="form-group"><select class="form-input" id="survey-category" style="padding-top:16px"><option value="">Select Category</option><option>Employee Pulse</option><option>Customer Feedback</option><option>Product Research</option><option>Event Evaluation</option></select><label class="form-label">Category</label></div>
+            <div class="form-group"><input type="text" class="form-input" id="survey-tagline" placeholder=" " maxlength="120"><label class="form-label">Survey Tagline</label></div>
+            <div class="form-group full"><input type="date" class="form-input" id="survey-deadline" placeholder=" "><label class="form-label">Response Deadline</label></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="survey-panel" data-step="2">
+        <h2>Audience & Rules</h2>
+        <p class="step-desc">Define who can participate and how responses are handled.</p>
+        <div class="form-card glass-card">
+          <div class="form-grid">
+            <div class="form-group full"><select class="form-input" id="survey-audience" style="padding-top:16px"><option value="">Select Audience</option><option>Internal Team</option><option>External Partners</option><option>All Users</option></select><label class="form-label">Audience</label></div>
+            <div class="survey-toggle-row"><span>Anonymous responses</span><label class="toggle-switch"><input type="checkbox" id="survey-anonymous"><span class="toggle-slider"></span></label></div>
+            <div class="survey-toggle-row"><span>Allow repeat submissions</span><label class="toggle-switch"><input type="checkbox" id="survey-repeat"><span class="toggle-slider"></span></label></div>
+            <div class="survey-toggle-row"><span>Allow response edits</span><label class="toggle-switch"><input type="checkbox" id="survey-edit"><span class="toggle-slider"></span></label></div>
+            <div class="survey-toggle-row"><span>Make survey public</span><label class="toggle-switch"><input type="checkbox" id="survey-public"><span class="toggle-slider"></span></label></div>
+            <div class="form-group full"><textarea class="workspace-textarea" id="survey-instructions" placeholder=" " rows="4"></textarea><label class="form-label">Instructions & candidate guidance</label></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="survey-panel" data-step="3">
+        <h2>Question Designer</h2>
+        <p class="step-desc">Build survey questions without scoring or evaluation fields.</p>
+        <div class="qtype-grid" id="survey-qtype-grid"></div>
+        <div class="survey-columns">
+          <div class="survey-questions-list glass-card">
+            <div class="list-header"><h3>Saved Questions</h3><span id="survey-question-count">0 questions</span></div>
+            <ul class="question-list" id="question-list"></ul>
+          </div>
+          <div class="survey-builder-card glass-card">
+            <div class="form-group full"><input type="text" class="form-input" id="survey-question-text" placeholder=" " required><label class="form-label">Question Text</label></div>
+            <div class="form-group full"><textarea class="workspace-textarea" id="survey-question-help" placeholder=" " rows="3"></textarea><label class="form-label">Helper text (optional)</label></div>
+            <div class="form-grid" id="survey-question-details"></div>
+            <div class="form-group full" id="survey-options-panel"></div>
+            <div class="form-actions" style="margin-top:18px">
+              <button class="btn btn-gold btn-sm" id="save-question">Add Question</button>
+              <button class="btn btn-outline btn-sm" id="update-question">Update Question</button>
+              <button class="btn btn-ghost btn-sm" id="clear-question">Clear</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="survey-panel" data-step="4">
+        <h2>Preview</h2>
+        <p class="step-desc">Review the survey experience before publishing.</p>
+        <div class="preview-frame glass-card" id="survey-preview">
+          <div class="preview-header"><h3 id="preview-name">Survey Preview</h3><p id="preview-info">Candidate view with response UI</p></div>
+          <div id="preview-question-list"></div>
+        </div>
+      </section>
+
+      <section class="survey-panel" data-step="5">
+        <h2>Publish Survey</h2>
+        <p class="step-desc">Confirm deployment and assign survey to participants.</p>
+        <div class="form-card glass-card">
+          <div class="publish-summary" id="publish-summary"></div>
+        </div>
+        <div class="form-card glass-card" style="margin-top:20px">
+          <h3>Candidate Assignment</h3>
+          <p class="text-muted">Select participants for this survey. Assignments can be managed later.</p>
+          <div class="table-wrapper"><table class="data-table"><thead><tr><th></th><th>Name</th><th>Email</th><th>Role</th></tr></thead><tbody id="survey-assign-tbody"></tbody></table></div>
+        </div>
+      </section>
+
+      <div class="step-nav-footer">
+        <button class="btn btn-ghost" id="step-prev" disabled>← Previous</button>
+        <button class="btn btn-gold btn-ripple" id="step-next">Continue →</button>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="survey-publish-modal">
+    <div class="modal">
+      <h3>Publish Survey</h3>
+      <p class="text-muted">This will create your survey and send assignment invitations to selected participants.</p>
+      <div class="modal-actions"><button class="btn btn-gold" id="confirm-publish">Publish</button><button class="btn btn-ghost" data-close="survey-publish-modal">Cancel</button></div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/create-survey.js"></script>
+</body>
+</html>

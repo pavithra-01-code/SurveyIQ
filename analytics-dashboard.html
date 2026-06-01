@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Dashboard | Aetram Group</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin-dashboard.css">
+  <link rel="stylesheet" href="css/analytics.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="admin-sidebar"></aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <div class="admin-main analytics-layout">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+          <h2 style="font-size:1.1rem">Analytics & Intelligence <span class="live-badge">LIVE</span></h2>
+        </div>
+        <div class="topbar-right">
+          <span class="signalr-status" id="signalr-status">● SignalR: Simulated</span>
+          <button class="btn btn-outline btn-sm" id="logout-btn">Logout</button>
+        </div>
+      </header>
+
+      <main class="analytics-content">
+        <div class="filter-panel">
+          <input type="date" class="filter-input" id="filter-from" aria-label="From date">
+          <input type="date" class="filter-input" id="filter-to" aria-label="To date">
+          <select class="filter-select" id="filter-type"><option value="">All Types</option><option>Quiz</option><option>Survey</option></select>
+          <select class="filter-select" id="filter-domain"><option value="">All Domains</option><option>Technology</option><option>Finance</option><option>HR</option></select>
+          <select class="filter-select" id="filter-status"><option value="">All Status</option><option>Completed</option><option>Ongoing</option><option>Scheduled</option></select>
+          <button class="btn btn-gold btn-sm" id="apply-filters">Apply Filters</button>
+          <button class="btn btn-ghost btn-sm" id="export-analytics">Export</button>
+        </div>
+
+        <div class="kpi-grid" id="kpi-grid"></div>
+
+        <div class="charts-grid">
+          <div class="chart-card glass-card"><h3>Performance Distribution</h3><canvas id="chart-pie"></canvas></div>
+          <div class="chart-card glass-card"><h3>Assessment Completion Trends</h3><canvas id="chart-line"></canvas></div>
+          <div class="chart-card glass-card"><h3>Domain-wise Scores</h3><canvas id="chart-bar"></canvas></div>
+          <div class="chart-card glass-card"><h3>Survey Satisfaction</h3><canvas id="chart-donut"></canvas></div>
+        </div>
+
+        <div class="glass-card shortlist-panel" style="padding:24px;margin-bottom:28px">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:16px">
+            <div>
+              <h3>Second Round Interview Shortlist</h3>
+              <p class="text-muted" style="font-size:0.85rem">Top performers auto-selected from leaderboard</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <label class="text-muted" style="font-size:0.85rem">Shortlist count</label>
+              <select class="per-page-select" id="shortlist-count"><option>5</option><option selected>10</option><option>15</option><option>20</option></select>
+              <button class="btn btn-gold btn-sm btn-ripple" id="send-shortlist-invite">Send Interview Invitations</button>
+            </div>
+          </div>
+          <ul class="shortlist-list" id="shortlist-list"></ul>
+        </div>
+
+        <div class="glass-card domain-leaderboard-panel" style="padding:24px;margin-bottom:28px">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:16px">
+            <div>
+              <h3>Domain Leaderboards</h3>
+              <p class="text-muted" style="font-size:0.85rem">View top 3 performers per domain and compare score clusters.</p>
+            </div>
+            <button class="btn btn-ghost btn-sm" id="refresh-domain-leaderboard">Refresh</button>
+          </div>
+          <div class="leaderboard-domains" id="domain-leaderboard"></div>
+        </div>
+
+        <div class="analytics-row">
+          <div class="chart-card glass-card" style="min-height:auto">
+            <h3>Candidate Performance</h3>
+            <div class="table-wrapper">
+              <table class="data-table" id="performance-table">
+                <thead>
+                  <tr>
+                    <th>Candidate</th><th>Domain</th><th>Assessment</th><th>Score</th>
+                    <th>Correct</th><th>Wrong</th><th>Status</th><th>Rank</th>
+                  </tr>
+                </thead>
+                <tbody id="performance-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="leaderboard-panel glass-card">
+            <h3>Live Leaderboard</h3>
+            <div class="podium" id="podium"></div>
+            <ul class="leaderboard-list" id="leaderboard-list"></ul>
+          </div>
+        </div>
+
+        <div class="chart-card glass-card">
+          <h3>Survey Analytics — Response Trends</h3>
+          <canvas id="chart-area" style="max-height:200px"></canvas>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/admin-shared.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>
